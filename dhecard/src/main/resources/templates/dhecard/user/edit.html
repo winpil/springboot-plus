@@ -1,53 +1,53 @@
 <!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/user/"}){ -->
 
 <form class="layui-form layui-form-pane" id="updateForm">
-	<div class="layui-row">
-		<div class="layui-form-item">
-			<label class="layui-form-label">姓名</label>
-			<div class="layui-input-inline">
-				<input type="text" name="name"  value="${user.name}"
-					 class="layui-input" >
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">编号</label>
-			<div class="layui-input-inline">
-				<input type="text" name="number"  lay-verify="required"
-					 class="layui-input" value="${user.number}"
-					>
-			</div>
-		</div>
-	</div>
-	<div class="layui-row">
-		
-		<div class="layui-col-xs4">
-		<div class="layui-form-item">
-			<label class="layui-form-label">用户类型</label>
-			<layui:simpleDictSelect style='layui-input-inline' type="user_type"
-				id="type" name="type" value="${user.type}" />
-		</div>
-		</div>
-	</div>
-	<div class="layui-row">
-		
-		<div class="layui-col-xs4">
-		<div class="layui-form-item">
-			<label class="layui-form-label">性别</label>
-			<layui:simpleDictSelect style='layui-input-inline' type="gender"
-				id="type" name="type" value="${user.gender}" />
-		</div>
-		</div>
-	</div>
-	<div class="layui-row">
-		
-		<div class="layui-col-xs4">
-		<div class="layui-form-item">
-			<label class="layui-form-label">是否可用</label>
-			<layui:simpleDictSelect style='layui-input-inline' type="enable"
-				id="type" name="type" value="${user.enable}" />
-		</div>
-		</div>
-	</div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name"  value="${user.name}"  lay-verify="required" class="layui-input" >
+            </div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">编号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="number" name="number"  value="${user.number}"  lay-verify="required" class="layui-input" >
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">用户类型</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="user_type" 
+					id="type" name="type" value="${user.type}" layVerify="required" />
+            </div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="gender" 
+					id="gender" name="gender" value="${user.gender}" layVerify="" />
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">是否可用</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="enable" 
+					id="enable" name="enable" value="${user.enable}" layVerify="" />
+            </div>
+            </div>
+        </div>
+    </div>
+
+	
     <input type="hidden" name="id" value=${user.id} />
     <layui:submitButtons id="updateButton" />
 </form>

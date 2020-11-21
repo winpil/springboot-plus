@@ -120,7 +120,7 @@ public class DhUserController{
     @ResponseBody
     public JsonResult<String> update(@Validated(ValidateConfig.UPDATE.class)  DhUser user) {
     	user.setUpdateTime(new Date());
-        boolean success = userService.update(user);
+        boolean success = userService.updateTemplate(user);
         if (success) {
             return new JsonResult().success();
         } else {
