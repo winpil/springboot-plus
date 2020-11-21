@@ -1,0 +1,54 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/user/"}){ -->
+
+<form class="layui-form layui-form-pane" id="addForm">
+    <div class="layui-row">
+        <div class="layui-form-item">
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" class="layui-input" lay-verify="required">
+            </div>
+            </div>
+		
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">编号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="number" class="layui-input" lay-verify="required">
+            </div>
+            </div>
+		
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">用户类型</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="user_type" layVerify="required" 
+                			id="type" name="type" value="" />
+            </div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="gender" layVerify="" 
+                			id="gender" name="gender" value="" />
+            </div>
+            </div>
+		
+        </div>
+    </div>
+ 
+   
+    <layui:submitButtons id="addButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['add'], function(){
+    var userAdd = layui.add
+    userAdd.init();
+});
+</script>
