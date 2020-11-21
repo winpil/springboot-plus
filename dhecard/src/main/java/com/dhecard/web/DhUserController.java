@@ -81,7 +81,15 @@ public class DhUserController{
         view.addObject("user", user);
         return view;
     }
-
+    @GetMapping(MODEL + "/faka.do")
+    @Function("user.faka")
+    @ResponseBody
+    public ModelAndView faka(Integer id) {
+        ModelAndView view = new ModelAndView("/dhecard/user/faka.html");
+        DhUser user = userService.queryById(id);
+        view.addObject("user", user);
+        return view;
+    }
     @GetMapping(MODEL + "/add.do")
     @Function("user.add")
     @ResponseBody

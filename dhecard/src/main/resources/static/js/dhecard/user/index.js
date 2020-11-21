@@ -108,6 +108,14 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
                     var url = "/dhecard/user/edit.do?id="+data.id;
                     Common.openDlg(url,"User管理>"+data.id+">编辑");
                 },
+                faka : function() { // 获取选中数目
+                    var data = Common.getOneFromTable(table,"userTable");
+                    if(data==null){
+                        return ;
+                    }
+                    var url = "/dhecard/user/faka.do?id="+data.id;
+                    Common.openDlg(url,"User管理>"+data.id+">编辑");
+                },
                 del : function() { 
                     layui.use(['del'], function(){
                         var delView = layui.del

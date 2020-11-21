@@ -1,0 +1,24 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/user/"}){ -->
+
+<form class="layui-form layui-form-pane" id="updateForm">
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">卡号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="cardNumber" name="cardNumber"  value="${user.cardNumber}"  lay-verify="required" class="layui-input" >
+            </div>
+            </div>
+        </div>
+    </div>
+	
+    <input type="hidden" name="id" value=${user.id} />
+    <layui:submitButtons id="updateButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['edit'], function(){
+    var userEdit = layui.edit
+    userEdit.init();
+});
+</script>
