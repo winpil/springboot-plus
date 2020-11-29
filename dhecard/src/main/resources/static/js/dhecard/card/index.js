@@ -26,36 +26,25 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
                 fixed:'left',
                 }, 
                 {
-                field : 'id', 
-                title : 'id',
-                fixed:'left',
-                width : 100
-                }, 
-                {
                 field : 'cardNumber', 
-                title : 'cardNumber',
-                width : 100
+                title : '卡号',
+                width : 350
                 }, 
                 {
                 field : 'money', 
-                title : 'money',
-                width : 100
+                title : '余额',
+                width : 200
                 }, 
                 {
                 field : 'statusText', //数据字典类型为 enable
-                title : 'status',
-                width : 100
+                title : '状态',
+                width : 150
                 }, 
                 {
                 field : 'createTime', 
-                title : 'createTime',
-                width : 100
-                }, 
-                {
-                field : 'updateTime', 
-                title : 'updateTime',
-                width : 100
-                } 
+                title : '创建时间',
+                width : 555
+                }
         
                 ] ]
         
@@ -78,7 +67,7 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
             toolbar = {
                 add : function() { // 获取选中数据
                     var url = "/dhecard/card/add.do";
-                    Common.openDlg(url,"卡管理>新增");
+                    Common.openDlg(url,"卡片管理>新增");
                 },
                 edit : function() { // 获取选中数目
                     var data = Common.getOneFromTable(table,"cardTable");
@@ -86,7 +75,7 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
                         return ;
                     }
                     var url = "/dhecard/card/edit.do?id="+data.id;
-                    Common.openDlg(url,"卡管理>"+data.id+">编辑");
+                    Common.openDlg(url,"卡片管理>"+data.id+">编辑");
                 },
                 del : function() { 
                     layui.use(['del'], function(){
