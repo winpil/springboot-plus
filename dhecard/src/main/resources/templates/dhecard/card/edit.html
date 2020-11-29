@@ -1,0 +1,57 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/card/"}){ -->
+
+<form class="layui-form layui-form-pane" id="updateForm">
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">cardNumber</label>
+            <div class="layui-input-inline">
+                <input type="text" id="cardNumber" name="cardNumber"  value="${card.cardNumber}"   class="layui-input" >
+            </div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">money</label>
+            <div class="layui-input-inline">
+                <input type="text" id="money" name="money"  value="${card.money}"  lay-verify="number" class="layui-input" >
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">status</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="enable" 
+					id="status" name="status" value="${card.status}" layVerify="" />
+            </div>
+            </div>
+            <div class="layui-inline">
+            <label class="layui-form-label">createTime</label>
+            <div class="layui-input-inline">
+                <input type="text" id="createTime" name="createTime"  value="${card.createTime}"   class="layui-input" >
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+            <label class="layui-form-label">updateTime</label>
+            <div class="layui-input-inline">
+                <input type="text" id="updateTime" name="updateTime"  value="${card.updateTime}"   class="layui-input" >
+            </div>
+            </div>
+        </div>
+    </div>
+	
+    <input type="hidden" name="id" value=${card.id} />
+    <layui:submitButtons id="updateButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['edit'], function(){
+    var cardEdit = layui.edit
+    cardEdit.init();
+});
+</script>

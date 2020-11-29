@@ -1,6 +1,6 @@
 <!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/user/"}){ -->
 
-<form class="layui-form layui-form-pane" id="updateForm">
+<form class="layui-form layui-form-pane" id="fakaForm">
     <div class="layui-row">
         <div class="layui-form-item">
             <div class="layui-inline">
@@ -13,12 +13,12 @@
     </div>
 	
     <input type="hidden" name="id" value=${user.id} />
-    <layui:submitButtons id="updateButton" />
+    <layui:submitButtons id="fakaButton" />
 </form>
 <!--#} -->
 <script>
-layui.use(['edit'], function(){
-    var userEdit = layui.edit
-    userEdit.init();
+layui.use(['faka'], function(){
+    var userFaka = layui.faka
+    userFaka.init();
 });
 </script>

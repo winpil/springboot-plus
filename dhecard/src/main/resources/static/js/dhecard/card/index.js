@@ -2,22 +2,22 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
     var form = layui.form;
     var laydate = layui.laydate;
     var table = layui.table;
-    var userTable = null;
+    var cardTable = null;
     var view ={
         init:function(){
             this.initTable();
             this.initSearchForm();
             this.initToolBar();
             window.dataReload = function(){
-                Lib.doSearchForm($("#searchForm"),userTable)
+                Lib.doSearchForm($("#searchForm"),cardTable)
             }
         },
         initTable:function(){
-            userTable = table.render({
-                elem : '#userTable',
+            cardTable = table.render({
+                elem : '#cardTable',
                 height : Lib.getTableHeight(1),
                 method : 'post',
-                url : Common.ctxPath + '/dhecard/user/list.json' // 数据接口
+                url : Common.ctxPath + '/dhecard/card/list.json' // 数据接口
                 ,page : Lib.tablePage // 开启分页
                 ,limit : 10,
                 cols : [ [ // 表头
@@ -25,64 +25,44 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
                 type : 'checkbox',
                 fixed:'left',
                 }, 
-               /* {
+                {
                 field : 'id', 
                 title : 'id',
                 fixed:'left',
                 width : 100
-                }, */
-                {
-                field : 'name', 
-                title : '姓名',
-                width : 150
-                }, 
-                {
-                field : 'number', 
-                title : '编号',
-                width : 250
                 }, 
                 {
                 field : 'cardNumber', 
-                title : '卡号',
-                width : 250
-                }, 
-                {
-                field : 'typeText', //数据字典类型为 user_type
-                title : '用户类型',
+                title : 'cardNumber',
                 width : 100
                 }, 
                 {
-                field : 'genderText', //数据字典类型为 gender
-                title : '性别',
-                width : 80
+                field : 'money', 
+                title : 'money',
+                width : 100
                 }, 
                 {
-                field : 'enableText', //数据字典类型为 enable
-                title : '是否可用',
+                field : 'statusText', //数据字典类型为 enable
+                title : 'status',
                 width : 100
                 }, 
-                /*{
-                field : 'classId', 
-                title : '班级',
-                width : 100
-                }, */
                 {
                 field : 'createTime', 
-                title : '创建时间',
-                width : 305
-                }/*, 
+                title : 'createTime',
+                width : 100
+                }, 
                 {
                 field : 'updateTime', 
-                title : '更新时间',
+                title : 'updateTime',
                 width : 100
-                } */
+                } 
         
                 ] ]
         
             });
             
-            table.on('checkbox(userTable)', function(obj){
-                var user = obj.data;
+            table.on('checkbox(cardTable)', function(obj){
+                var card = obj.data;
                 if(obj.checked){
                    //按钮逻辑Lib.buttonEnable()
                 }else{
@@ -92,29 +72,21 @@ layui.define([ 'form', 'laydate', 'table' ], function(exports) {
         },
         	
         initSearchForm:function(){
-            Lib.initSearchForm( $("#searchForm"),userTable,form);
+            Lib.initSearchForm( $("#searchForm"),cardTable,form);
         },
         initToolBar:function(){
             toolbar = {
                 add : function() { // 获取选中数据
-                    var url = "/dhecard/user/add.do";
-                    Common.openDlg(url,"用户管理>新增");
+                    var url = "/dhecard/card/add.do";
+                    Common.openDlg(url,"卡管理>新增");
                 },
                 edit : function() { // 获取选中数目
-                    var data = Common.getOneFromTable(table,"userTable");
+                    var data = Common.getOneFromTable(table,"cardTable");
                     if(data==null){
                         return ;
                     }
-                    var url = "/dhecard/user/edit.do?id="+data.id;
-                    Common.openDlg(url,"用户管理>"+data.id+">编辑");
-                },
-                faka : function() { // 获取选中数目
-                    var data = Common.getOneFromTable(table,"userTable");
-                    if(data==null){
-                        return ;
-                    }
-                    var url = "/dhecard/user/faka.do?id="+data.id;
-                    Common.openDlg(url,"用户管理>"+data.id+">发卡");
+                    var url = "/dhecard/card/edit.do?id="+data.id;
+                    Common.openDlg(url,"卡管理>"+data.id+">编辑");
                 },
                 del : function() { 
                     layui.use(['del'], function(){

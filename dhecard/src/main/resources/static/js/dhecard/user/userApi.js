@@ -7,6 +7,9 @@ layui.define([], function(exports) {
             addUser:function(form,callback){
                 Lib.submitForm("/dhecard/user/add.json",form,{},callback)
             },
+            faka:function(form,callback){
+                Lib.submitForm("/dhecard/user/saveCard.json",form,{},callback)
+            },
             del:function(ids,callback){
                 Common.post("/dhecard/user/delete.json",{"ids":ids},function(){
                     callback();

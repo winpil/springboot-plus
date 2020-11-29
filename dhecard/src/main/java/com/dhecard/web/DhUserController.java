@@ -1,45 +1,22 @@
 package com.dhecard.web;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.beetl.sql.core.engine.PageQuery;
-import org.jxls.common.Context;
-import org.jxls.reader.ReaderBuilder;
-import org.jxls.reader.ReaderConfig;
-import org.jxls.reader.XLSReadMessage;
-import org.jxls.reader.XLSReadStatus;
-import org.jxls.reader.XLSReader;
-import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ibeetl.admin.console.web.dto.DictExcelImportData;
-import com.ibeetl.admin.console.web.query.UserQuery;
 import com.ibeetl.admin.core.annotation.Function;
-import com.ibeetl.admin.core.annotation.Query;
-import com.ibeetl.admin.core.entity.CoreDict;
-import com.ibeetl.admin.core.entity.CoreUser;
-import com.ibeetl.admin.core.file.FileItem;
 import com.ibeetl.admin.core.file.FileService;
 import com.ibeetl.admin.core.web.JsonResult;
 import com.ibeetl.admin.core.util.*;
@@ -58,6 +35,7 @@ public class DhUserController{
 
 
     @Autowired private DhUserService userService;
+    @Autowired private DhCardService cardService;
     
     @Autowired
     FileService fileService;
@@ -135,7 +113,24 @@ public class DhUserController{
             return JsonResult.failMessage("保存失败");
         }
     }
-
+    @PostMapping(MODEL + "/saveCard.json")
+    @Function("user.update")
+    @ResponseBody
+    public JsonResult<String> saveCard(@Validated(ValidateConfig.UPDATE.class)  DhUser user) {
+    	DhUserQuery query = new DhUserQuery();
+    	query.setCardNumber(user.getCardNumber());
+    	PageQuery<DhCard> list = cardService.queryByCondition(query.getPageQuery());
+    	if(list.getTotalRow() == 0) {
+	        boolean success = cardService.saveCard(user);
+	        if (success) {
+	            return new JsonResult().success();
+	        } else {
+	            return JsonResult.failMessage("保存失败");
+	        }
+    	}else {
+    		return JsonResult.failMessage("卡已存在");
+    	}
+    }
 
    
     @GetMapping(MODEL + "/view.json")

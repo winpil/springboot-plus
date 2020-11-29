@@ -1,0 +1,20 @@
+<!--#layout("/common/layout.html",{"jsBase":"/js/dhecard/card/"}){ -->
+<layui:searchForm formId="searchForm"  condition="${search}">
+</layui:searchForm>
+
+<div class="layui-btn-group">
+    <layui:accessButton function="card.add"  action="add">增加</layui:accessButton>
+    <layui:accessButton function="card.edit"  action="edit">编辑</layui:accessButton>
+    <layui:accessButton function="card.del"  action="del">删除</layui:accessButton>
+</div>
+
+<table id="cardTable" lay-filter="cardTable"></table>
+<!--#} -->
+<script>
+
+layui.use(['index'], function(){
+    var index = layui.index
+    index.init();
+});
+
+</script>

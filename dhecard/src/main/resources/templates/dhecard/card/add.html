@@ -1,0 +1,65 @@
+<!--# layout("/common/layout.html",{"jsBase":"/js/dhecard/card/"}){ -->
+
+<form class="layui-form layui-form-pane" id="addForm">
+    <div class="layui-row">
+        <div class="layui-form-item">
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">cardNumber</label>
+            <div class="layui-input-inline">
+                <input type="text" name="cardNumber" class="layui-input" >
+            </div>
+            </div>
+		
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">money</label>
+            <div class="layui-input-inline">
+                <input type="text" name="money" class="layui-input" lay-verify="number">
+            </div>
+            </div>
+		
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">status</label>
+            <div class="layui-input-inline">
+                <layui:simpleDictSelect style='layui-input-inline' type="enable" layVerify="" 
+                			id="status" name="status" value="" />
+            </div>
+            </div>
+		
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">createTime</label>
+            <div class="layui-input-inline">
+                <input type="text" name="createTime" class="layui-input" >
+            </div>
+            </div>
+		
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form-item">
+		
+            <div class="layui-inline">
+            <label class="layui-form-label">updateTime</label>
+            <div class="layui-input-inline">
+                <input type="text" name="updateTime" class="layui-input" >
+            </div>
+            </div>
+		
+        </div>
+    </div>
+    <layui:submitButtons id="addButton" />
+</form>
+<!--#} -->
+<script>
+layui.use(['add'], function(){
+    var cardAdd = layui.add
+    cardAdd.init();
+});
+</script>
