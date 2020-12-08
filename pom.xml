@@ -13,7 +13,7 @@
 	<modules>
 		<module>admin-core</module>
 		<module>admin-console</module>
-		
+		<module>dhecard</module>
 	</modules>
 	<parent>
         <groupId>org.springframework.boot</groupId>
