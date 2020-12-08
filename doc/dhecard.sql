@@ -11,7 +11,7 @@
  Target Server Version : 50729
  File Encoding         : 65001
 
- Date: 21/11/2020 23:32:44
+ Date: 08/12/2020 22:24:40
 */
 
 SET NAMES utf8mb4;
@@ -228,7 +228,7 @@ CREATE TABLE `core_function`  (
   `PARENT_ID` int(65) NULL DEFAULT NULL,
   `TYPE` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 188 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of core_function
@@ -254,6 +254,7 @@ INSERT INTO `core_function` VALUES (181, 'blog.query', '博客查询功能', NUL
 INSERT INTO `core_function` VALUES (182, 'blog', '博客测试', NULL, '/admin/blog/index.do', 0, 'FN0');
 INSERT INTO `core_function` VALUES (183, 'code.project', '项目生成', '2018-03-01 09:38:17.068000', '/core/codeGen/project.do', 12, 'FN0');
 INSERT INTO `core_function` VALUES (185, '用户管理', '用户管理', '2020-11-21 14:41:08.999000', '/dhecard/user/index.do', 0, 'FN0');
+INSERT INTO `core_function` VALUES (187, '卡片管理', '卡片管理', '2020-11-29 16:48:33.993000', '/dhecard/card/index.do', 0, 'FN0');
 
 -- ----------------------------
 -- Table structure for core_menu
@@ -270,7 +271,7 @@ CREATE TABLE `core_menu`  (
   `SEQ` int(65) NULL DEFAULT NULL,
   `ICON` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of core_menu
@@ -295,6 +296,7 @@ INSERT INTO `core_menu` VALUES (25, '子系统生成', '子系统生成', '2018-
 INSERT INTO `core_menu` VALUES (26, 'base_manager', '基础管理', '2020-11-21 12:21:23.902000', NULL, 'MENU_S', 0, 1, '');
 INSERT INTO `core_menu` VALUES (27, 'base_user', '用户管理', '2020-11-21 13:32:01.606000', NULL, 'MENU_N', 26, 1, '');
 INSERT INTO `core_menu` VALUES (28, 'base_stu', '用户管理', '2020-11-21 13:33:06.759000', 185, 'MENU_M', 27, 1, '');
+INSERT INTO `core_menu` VALUES (29, 'card_manager', '卡片管理', '2020-11-29 16:52:32.624000', 187, 'MENU_M', 27, 2, '');
 
 -- ----------------------------
 -- Table structure for core_org
@@ -484,14 +486,20 @@ INSERT INTO `core_user_role` VALUES (172, 171, 1, 4, '2018-02-02 09:36:40.967000
 -- ----------------------------
 DROP TABLE IF EXISTS `dh_card`;
 CREATE TABLE `dh_card`  (
-  `ID` int(20) NOT NULL,
+  `ID` int(20) NOT NULL AUTO_INCREMENT,
   `CARD_NUMBER` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `MONEY` double(255, 0) NOT NULL COMMENT '余额',
   `STATUS` int(2) NOT NULL COMMENT '状态：1：可用，2：挂失，3：销卡',
   `CREATE_TIME` datetime(0) NULL,
   `UPDATE_TIME` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dh_card
+-- ----------------------------
+INSERT INTO `dh_card` VALUES (1, '123123123', 0, 1, '2020-11-29 17:20:47', '2020-11-29 17:20:47');
+INSERT INTO `dh_card` VALUES (2, '23424214', 0, 1, '2020-11-29 17:21:07', '2020-11-29 17:21:07');
 
 -- ----------------------------
 -- Table structure for dh_user
@@ -514,7 +522,7 @@ CREATE TABLE `dh_user`  (
 -- ----------------------------
 -- Records of dh_user
 -- ----------------------------
-INSERT INTO `dh_user` VALUES (1, '对方是否', '123', NULL, 'S', 1, 1, NULL, '2020-11-21 13:57:00', '2020-11-21 13:57:00');
-INSERT INTO `dh_user` VALUES (2, '啊实打实的', '123123123', NULL, 'T', 2, 1, NULL, '2020-11-21 22:20:31', '2020-11-21 22:20:31');
+INSERT INTO `dh_user` VALUES (1, '阿萨', '123123', '123123123', 'T', 2, 0, NULL, '2020-11-21 13:57:00', '2020-11-29 17:20:47');
+INSERT INTO `dh_user` VALUES (2, '啊实打实的', '123123123', '23424214', 'T', 2, 1, NULL, '2020-11-21 22:20:31', '2020-11-29 17:21:07');
 
 SET FOREIGN_KEY_CHECKS = 1;
